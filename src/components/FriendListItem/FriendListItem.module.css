@@ -1,0 +1,29 @@
+.friendCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.friendAvatar {
+  width: 80px;
+  height: 80px;
+}
+
+.friendName {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.friendStatus {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
+}
