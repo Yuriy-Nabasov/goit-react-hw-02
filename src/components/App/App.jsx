@@ -1,35 +1,49 @@
+import { useState, useEffect } from "react";
 import Section from "../Section/Section";
 import Container from "../Container/Container";
-import Heading from "../Heading/Heading";
+
+import Description from "../Description/Description";
+import Options from "../Options/Options";
+import Notification from "../Notification/Notification";
+import Feedback from "../Feedback/Feedback";
 import "./App.css";
-// import Profile from "../Profile/Profile";
-// import FriendList from "../FriendList/FriendList";
-// import TransactionHistory from "../TransactionHistory/TransactionHistory";
-// import userData from "../userData.json";
-// import friends from "../friends.json";
-// import transactions from "../transactions.json";
 
 function App() {
+  const [data, setData] = useState(() => {
+    const savedData = localStorage.getItem("feedbackData");
+    return savedData ? JSON.parse(savedData) : { good: 0, neutral: 0, bad: 0 };
+  });
+
+  const totalFeedback = data.good + data.neutral + data.bad;
+
+  const updateFeedback = (key) => {
+    const newData = { ...data };
+    if (key === "reset") {
+      newData.good = 0;
+      newData.neutral = 0;
+      newData.bad = 0;
+    } else {
+      newData[key] += 1;
+    }
+
+    setData(newData);
+    localStorage.setItem("feedbackData", JSON.stringify(newData));
+  };
+
+  useEffect(() => {
+    localStorage.setItem("feedbackData", JSON.stringify(data));
+  }, [data]);
+
   return (
     <Section>
       <Container>
-        <Heading title="Sip Happens Café" bottom />
-        <p>
-          Please leave your feedback about our service by selecting one of the
-          options below.
-        </p>
-        {/* <Heading title="Task 1. Social network profile" bottom />
-        <Profile
-          name={userData.username}
-          tag={userData.tag}
-          location={userData.location}
-          image={userData.avatar}
-          stats={userData.stats}
-        />
-        <Heading title="Task 2. Frends list" top bottom />
-        <FriendList friends={friends} />
-        <Heading title="Task 3. Transaction history" top bottom />
-        <TransactionHistory items={transactions} /> */}
+        <Description />
+        <Options update={updateFeedback} totalFeedback={totalFeedback} />
+        {totalFeedback === 0 ? (
+          <Notification />
+        ) : (
+          <Feedback data={data} totalFeedback={totalFeedback} />
+        )}
       </Container>
     </Section>
   );
