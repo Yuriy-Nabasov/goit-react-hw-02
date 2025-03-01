@@ -2,18 +2,23 @@ import Section from "../Section/Section";
 import Container from "../Container/Container";
 import Heading from "../Heading/Heading";
 import "./App.css";
-import Profile from "../Profile/Profile";
-import FriendList from "../FriendList/FriendList";
-import TransactionHistory from "../TransactionHistory/TransactionHistory";
-import userData from "../userData.json";
-import friends from "../friends.json";
-import transactions from "../transactions.json";
+// import Profile from "../Profile/Profile";
+// import FriendList from "../FriendList/FriendList";
+// import TransactionHistory from "../TransactionHistory/TransactionHistory";
+// import userData from "../userData.json";
+// import friends from "../friends.json";
+// import transactions from "../transactions.json";
 
 function App() {
   return (
     <Section>
       <Container>
-        <Heading title="Task 1. Social network profile" bottom />
+        <Heading title="Sip Happens Café" bottom />
+        <p>
+          Please leave your feedback about our service by selecting one of the
+          options below.
+        </p>
+        {/* <Heading title="Task 1. Social network profile" bottom />
         <Profile
           name={userData.username}
           tag={userData.tag}
@@ -24,7 +29,7 @@ function App() {
         <Heading title="Task 2. Frends list" top bottom />
         <FriendList friends={friends} />
         <Heading title="Task 3. Transaction history" top bottom />
-        <TransactionHistory items={transactions} />
+        <TransactionHistory items={transactions} /> */}
       </Container>
     </Section>
   );
