@@ -17,17 +17,15 @@ function App() {
   const totalFeedback = data.good + data.neutral + data.bad;
 
   const updateFeedback = (key) => {
-    const newData = { ...data };
-    if (key === "reset") {
-      newData.good = 0;
-      newData.neutral = 0;
-      newData.bad = 0;
-    } else {
-      newData[key] += 1;
-    }
-
-    setData(newData);
-    localStorage.setItem("feedbackData", JSON.stringify(newData));
+    setData((prevData) => {
+      if (key === "reset") {
+        return { good: 0, neutral: 0, bad: 0 };
+      }
+      return {
+        ...prevData,
+        [key]: prevData[key] + 1,
+      };
+    });
   };
 
   useEffect(() => {
