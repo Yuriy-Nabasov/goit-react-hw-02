@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Section from "../Section/Section";
 import Container from "../Container/Container";
 
+import { Analytics } from "@vercel/analytics/react";
+
 import Description from "../Description/Description";
 import Options from "../Options/Options";
 import Notification from "../Notification/Notification";
@@ -42,6 +44,7 @@ function App() {
         ) : (
           <Feedback data={data} totalFeedback={totalFeedback} />
         )}
+        <Analytics />
       </Container>
     </Section>
   );
